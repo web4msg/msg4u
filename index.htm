@@ -1,40 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Msg</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="A hearty message for you">
+
+    <meta name="theme-color"
+          content="#11698e">
+
+    <title>A hearty msg for You !!</title>
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css1.css">
+
 </head>
+
+
 <body>
 
-    <div class="header">
 
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-        <!-- The overlay -->
-        <div id="myNav" class="overlay">
+    <header class="header">
 
-            <!-- Button to close the overlay navigation -->
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-            <!-- Overlay content -->
-            <div class="overlay-content">
-            <a>Just Fcuk Off Man!!</a>
-            </div>
-        
-        </div>
-        
-        <!-- Use any element to open/show the overlay navigation menu -->
-        <div onclick="openNav()">
-            <div class="container" onclick="myFunction(this)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
+        <!-- Hamburger button -->
+
+        <div class="container"
+             onclick="myFunction(this)"
+             aria-label="Open menu"
+             role="button"
+             tabindex="0">
+
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+
         </div>
 
 
-        <p>A hearty msg for You !!</p>
+        <p>
+            A hearty msg for You !!
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         OPTIONAL FULL-SCREEN MENU
+         ===================================================== -->
+
+    <div id="myNav"
+         class="overlay">
+
+        <a href="javascript:void(0)"
+           class="closebtn"
+           onclick="closeNav()">
+            &times;
+        </a>
+
+        <div class="overlay-content">
+
+            <a href="#" onclick="closeNav()">
+                Home
+            </a>
+
+            <a href="#" onclick="closeNav()">
+                About
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CHAT AREA
+         ===================================================== -->
+
+    <main class="body">
+
+        <div class="chat-container">
+
+
+            <!-- =================================================
+                 CHINESE
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    中
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Chinese message. Tap to see translation.">
+
+                    <span class="message-text">
+                        滚开！
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in Chinese
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FRENCH
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    Fr
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="French message. Tap to see translation.">
+
+                    <span class="message-text">
+                        Va te faire foutre!
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in French
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ENGLISH
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    En
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="English message. Tap to see translation.">
+
+                    <span class="message-text">
+                        Fcuk off
+                    </span>
+
+                    <span class="tooltiptext">
+                        It is in English only!
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SPANISH
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    Es
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Spanish message. Tap to see translation.">
+
+                    <span class="message-text">
+                        ¡Vete a la mierda!
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in Spanish
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GERMAN
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    De
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="German message. Tap to see translation.">
+
+                    <span class="message-text">
+                        Verpiss dich!
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in German
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ITALIAN
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    It
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Italian message. Tap to see translation.">
+
+                    <span class="message-text">
+                        Vaffanculo!
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in Italian
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ARABIC
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar"
+                     aria-hidden="true">
+                    ع
+                </div>
+
+                <div class="message-bubble"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Arabic message. Tap to see translation.">
+
+                    <span class="message-text"
+                          dir="rtl">
+                        تراجع
+                    </span>
+
+                    <span class="tooltiptext">
+                        It says "to fcuk off" in Arabic
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FINAL MESSAGE
+                 ================================================= -->
+
+            <div class="chat-row">
+
+                <div class="avatar emoji-avatar"
+                     aria-hidden="true">
+                    🖕
+                </div>
+
+                <div class="message-bubble final-message"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Final message. Tap to see translation.">
+
+                    <span class="message-text">
+                        For those who can't read
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        Sent with
+        <span class="emoji"
+              aria-label="love">
+            ❤️
+        </span>
+        by Hirdyansh
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="js1.js"></script>
+
+</body>
+
+</html>        <p>A hearty msg for You !!</p>
 
     </div>
 
