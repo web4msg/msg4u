@@ -1,0 +1,312 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #11698e;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.header {
+    padding: 2rem 1rem;
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+    border-radius: 3px;
+}
+
+.change .bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.header p {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    margin: 13px;
+}
+
+.body {
+    background-color: #fff8c1;
+    padding: 3rem 1rem;
+    min-height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg {
+    background-color: #16a596;
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+}
+
+/* Main message bubble */
+#talkbubble {
+    width: min(90%, 700px);
+    min-height: 300px;
+    background: #f05454;
+    position: relative;
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    box-shadow:
+        0 6px 15px 0 rgba(0, 0, 0, 0.3),
+        0 6px 20px 0 rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* Speech bubble tail */
+#talkbubble:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #f05454;
+    border-bottom: 13px solid transparent;
+}
+
+/* Individual language messages */
+.tooltip {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0.35rem;
+    cursor: pointer;
+}
+
+/* Tooltip */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: min(400px, 90vw);
+    background-color: #59886b;
+    color: #000;
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    border-radius: 6px;
+    padding: 8px 10px;
+
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+
+    transition: opacity 0.2s ease;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:focus .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #59886b transparent transparent transparent;
+}
+
+/* Emoji */
+.emoji {
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        "Android Emoji",
+        sans-serif;
+
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+/* Special final message */
+#large {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    padding: 2rem 1rem;
+    font-size: clamp(1rem, 3vw, 1.18rem);
+}
+
+/* Overlay */
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.92);
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0 1rem;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: clamp(2.5rem, 10vw, 3.75rem);
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+
+    .header {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .body {
+        padding: 2rem 0.75rem;
+    }
+
+    #talkbubble {
+        width: 94%;
+        min-height: 320px;
+        padding: 1.5rem 0.75rem;
+    }
+
+    #talkbubble:before {
+        display: none;
+    }
+
+    .tooltip {
+        max-width: 100%;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+
+    .header {
+        padding: 1rem 0.5rem;
+    }
+
+    .header p {
+        margin: 10px 5px;
+    }
+
+    .body {
+        padding: 1.5rem 0.5rem;
+        min-height: 60vh;
+    }
+
+    #talkbubble {
+        width: 100%;
+        min-height: 330px;
+        padding: 1.5rem 0.5rem;
+        border-radius: 8px;
+    }
+
+    .tooltip {
+        padding: 0.4rem 0.2rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .tooltip .tooltiptext {
+        width: 90vw;
+        max-width: 350px;
+        left: 50%;
+        bottom: 100%;
+    }
+
+    .footer {
+        padding: 1.5rem 0.5rem;
+    }
+}
+
+/* Small landscape screens */
+@media screen and (max-height: 450px) {
+
+    .overlay-content {
+        top: 15%;
+    }
+
+    .overlay a {
+        font-size: 1.25rem;
+    }
+
+    .overlay .closebtn {
+        font-size: 2.5rem;
+        top: 10px;
+        right: 20px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
