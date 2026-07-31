@@ -1,40 +1,631 @@
-body{
-    background-color: #11698e;
-    text-align: center;
+/* =========================================================
+   MSG4U - RESPONSIVE WHATSAPP-STYLE CHAT
+   ========================================================= */
+
+/* ---------- Global ---------- */
+
+* {
+    box-sizing: border-box;
 }
 
-.header{
-    padding-top: 2%;
-    padding-bottom: 2%;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
 }
+
+body {
+    background-color: #11698e;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    padding: 20px 15px;
+}
+
+.header p {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    margin: 13px 5px;
+}
+
+
+/* ---------- Hamburger ---------- */
 
 .container {
     display: inline-block;
     cursor: pointer;
+    padding: 5px;
 }
-  
-.bar1, .bar2, .bar3 {
+
+.bar1,
+.bar2,
+.bar3 {
     width: 35px;
     height: 5px;
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
+    border-radius: 3px;
 }
-  
+
 .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
     transform: rotate(-45deg) translate(-9px, 6px);
 }
-  
-.change .bar2 {opacity: 0;}
-  
+
+.change .bar2 {
+    opacity: 0;
+}
+
 .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
     transform: rotate(45deg) translate(-8px, -8px);
 }
 
-p{
-    font-size: 2rem;
+
+/* =========================================================
+   CHAT AREA
+   ========================================================= */
+
+.body {
+    background-color: #fff8c1;
+    padding: 30px 15px;
+    min-height: 60vh;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   CHAT ROW
+   ========================================================= */
+
+.chat-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+
+    width: 100%;
+
+    /*
+       Important:
+       Allows children to shrink properly on mobile.
+    */
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CIRCULAR AVATAR
+   ========================================================= */
+
+.avatar {
+    width: 44px;
+    height: 44px;
+
+    min-width: 44px;
+    min-height: 44px;
+
+    border-radius: 50%;
+
+    background-color: #16a596;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.25);
+
+    user-select: none;
+}
+
+.emoji-avatar {
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        "Android Emoji",
+        sans-serif;
+
+    font-size: 1.6rem;
+}
+
+
+/* =========================================================
+   MESSAGE BUBBLE
+   ========================================================= */
+
+.message-bubble {
+    position: relative;
+
+    /*
+       The bubble can grow with the message but can never
+       exceed the available screen width.
+    */
+    width: fit-content;
+    max-width: calc(100% - 54px);
+
+    min-width: 0;
+
+    background-color: #f05454;
+    color: #111;
+
+    padding: 11px 16px;
+
+    border-radius: 18px 18px 18px 4px;
+
+    font-size: clamp(1rem, 3.5vw, 1.35rem);
+
+    line-height: 1.4;
+
+    word-break: normal;
+    overflow-wrap: anywhere;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.22);
+
+    cursor: pointer;
+
+    /*
+       Prevents browser double-tap zoom and improves
+       touch interaction.
+    */
+    touch-action: manipulation;
+
+    user-select: none;
+}
+
+
+/* ---------- WhatsApp-style tail ---------- */
+
+.message-bubble::before {
+    content: "";
+
+    position: absolute;
+
+    left: -7px;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-top: 9px solid transparent;
+    border-right: 10px solid #f05454;
+}
+
+
+/* =========================================================
+   MESSAGE TEXT
+   ========================================================= */
+
+.message-text {
+    display: block;
+
+    max-width: 100%;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+}
+
+
+/* =========================================================
+   TRANSLATION POPUP
+   ========================================================= */
+
+.tooltiptext {
+    /*
+       JavaScript changes these values when the popup
+       is opened.
+
+       The popup is deliberately hidden by default.
+    */
+    display: none;
+
+    position: fixed;
+
+    /*
+       JavaScript sets left/top.
+    */
+    left: 0;
+    top: 0;
+
+    width: max-content;
+
+    max-width: calc(100vw - 30px);
+
+    padding: 9px 12px;
+
+    background-color: #59886b;
+
+    color: #000;
+
+    text-align: center;
+
+    border-radius: 9px;
+
+    font-size: 0.9rem;
+
+    line-height: 1.35;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.25);
+
+    z-index: 9999;
+
+    /*
+       Make sure the tooltip itself never causes
+       horizontal scrolling.
+    */
+    overflow: hidden;
+
+    /*
+       Tooltip should not interfere with clicking
+       the message again.
+    */
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity 0.15s ease;
+}
+
+
+/* ---------- Visible translation ---------- */
+
+.message-bubble.show-tooltip .tooltiptext {
+    display: block;
+    opacity: 1;
+}
+
+
+/* =========================================================
+   TOOLTIP ARROW
+   ========================================================= */
+
+.tooltiptext::before {
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+
+    border-bottom: 6px solid #59886b;
+
+    /*
+       JavaScript changes the arrow position.
+    */
+    left: 18px;
+    top: -6px;
+}
+
+
+/*
+   When tooltip is displayed ABOVE the message,
+   JavaScript adds this class.
+*/
+
+.tooltiptext.tooltip-above::before {
+    top: auto;
+    bottom: -6px;
+
+    border-bottom: none;
+
+    border-top: 6px solid #59886b;
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+   ========================================================= */
+
+.final-message {
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   EMOJI
+   ========================================================= */
+
+.emoji {
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        "Android Emoji",
+        sans-serif;
+
+    font-size: 1.2em;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 25px 15px;
+
+    font-size: clamp(1rem, 3vw, 1.18rem);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   FULL SCREEN MENU OVERLAY
+   ========================================================= */
+
+.overlay {
+    height: 100%;
+    width: 100%;
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0, 0, 0, 0.92);
+}
+
+.overlay-content {
+    position: relative;
+
+    top: 25%;
+
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    padding: 0 20px;
+}
+
+.overlay a {
+    padding: 8px;
+
+    text-decoration: none;
+
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+
+    color: #818181;
+
+    display: block;
+
+    transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+
+    top: 15px;
+    right: 25px;
+
+    font-size: clamp(2.5rem, 10vw, 3.75rem);
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    .body {
+        padding: 25px 12px;
+    }
+
+    .chat-container {
+        max-width: 600px;
+        gap: 12px;
+    }
+
+    .message-bubble {
+        max-width: calc(100% - 54px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE PHONES
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    .header {
+        padding: 15px 10px;
+    }
+
+    .header p {
+        margin: 10px 5px;
+    }
+
+    .body {
+        padding: 20px 10px;
+        min-height: 60vh;
+    }
+
+    .chat-container {
+        width: 100%;
+        gap: 11px;
+    }
+
+    .chat-row {
+        gap: 8px;
+    }
+
+    /* Smaller circular avatar */
+
+    .avatar {
+        width: 38px;
+        height: 38px;
+
+        min-width: 38px;
+        min-height: 38px;
+
+        font-size: 0.8rem;
+    }
+
+    .emoji-avatar {
+        font-size: 1.35rem;
+    }
+
+
+    /* Message bubble */
+
+    .message-bubble {
+        max-width: calc(100% - 46px);
+
+        padding: 9px 13px;
+
+        border-radius: 17px 17px 17px 4px;
+
+        font-size: 1.05rem;
+
+        line-height: 1.35;
+    }
+
+    .message-bubble::before {
+        left: -6px;
+
+        border-top-width: 8px;
+        border-right-width: 9px;
+    }
+
+
+    /* Translation */
+
+    .tooltiptext {
+        max-width: calc(100vw - 30px);
+
+        font-size: 0.85rem;
+
+        padding: 8px 10px;
+    }
+
+    .footer {
+        padding: 20px 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 350px) {
+
+    .body {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .chat-container {
+        gap: 9px;
+    }
+
+    .avatar {
+        width: 34px;
+        height: 34px;
+
+        min-width: 34px;
+        min-height: 34px;
+    }
+
+    .message-bubble {
+        max-width: calc(100% - 42px);
+
+        padding: 8px 11px;
+
+        font-size: 0.98rem;
+    }
+
+    .tooltiptext {
+        max-width: calc(100vw - 20px);
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONES
+   ========================================================= */
+
+@media screen and (max-height: 450px) {
+
+    .overlay-content {
+        top: 15%;
+    }
+
+    .overlay a {
+        font-size: 20px;
+    }
+
+    .overlay .closebtn {
+        font-size: 40px;
+
+        top: 10px;
+        right: 20px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        transition: none !important;
+    }
+}    font-size: 2rem;
     margin: 13px;
 }
 
